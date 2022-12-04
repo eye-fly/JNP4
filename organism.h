@@ -131,6 +131,19 @@ template <typename species_t, bool sp1_eats_m, bool sp1_eats_p, bool sp2_eats_m,
                 }
                 //3.2 and  5.
                 return std::make_tuple(organism1, organism2, std::nullopt);
-              }
+    }
+
+template <typename species_t, bool sp1_eats_m, bool sp1_eats_p, bool sp2_eats_m, bool sp2_eats_p>
+    constexpr Organism<species_t, sp1_eats_m, sp1_eats_p>
+    operator^(Organism<species_t, sp1_eats_m, sp1_eats_p> organism1,
+        Organism<species_t, sp2_eats_m, sp2_eats_p> organism2) {
+            return get<0>(encounter(organism1, organism2));
+    }
+template <typename species_t, bool sp1_eats_m, bool sp1_eats_p, typename... Args>
+    constexpr Organism<species_t, sp1_eats_m, sp1_eats_p>
+    encounter_series(Organism<species_t, sp1_eats_m, sp1_eats_p> organism1,
+        Args... args) {
+        return (organism1 ^ ... ^ args);
+    }
 
 #endif

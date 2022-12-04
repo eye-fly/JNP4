@@ -26,16 +26,16 @@ int main() {
     static_assert(dog_result.is_dead());
     static_assert(!child_result.has_value());
 
-    // // Przykład użycia encounter_series:
-    // // wilk spotyka martwego psa (dog_result z przykładu powyżej – nic nie robi,
-    // // sosnę – nic nie robi, psa, którego zjada, i słonia , który jest zbyt
-    // // silny, żeby go zjeść, zatem nic nie robi.
-    // constexpr Plant<species_id_t> pine(pine_id, 34);
-    // constexpr Herbivore<species_id_t> elephant(elephant_id, 500);
-    // constexpr auto wolf_result_2 = encounter_series(wolf, wolf_result, pine, dog, elephant);
+    // Przykład użycia encounter_series:
+    // wilk spotyka martwego psa (dog_result z przykładu powyżej – nic nie robi,
+    // sosnę – nic nie robi, psa, którego zjada, i słonia , który jest zbyt
+    // silny, żeby go zjeść, zatem nic nie robi.
+    constexpr Plant<species_id_t> pine(pine_id, 34);
+    constexpr Herbivore<species_id_t> elephant(elephant_id, 500);
+    constexpr auto wolf_result_2 = encounter_series(wolf, wolf_result, pine, dog, elephant);
 
-    // static_assert(!wolf_result_2.is_dead());
-    // static_assert(wolf_result_2.get_vitality() == 105);
+    static_assert(!wolf_result_2.is_dead());
+    static_assert(wolf_result_2.get_vitality() == 105);
 
     // Funkcja get_species() powinna zwracać gatunek.
     static_assert(wolf.get_species() == wolf_id);
